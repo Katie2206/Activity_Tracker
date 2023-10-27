@@ -1,3 +1,4 @@
+
 public class Activity {
 
     private String ActivityType;
