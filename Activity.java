@@ -46,4 +46,21 @@ public class Activity {
     public void setAverageHeartRate(int averageHeartRate) {
         AverageHeartRate = averageHeartRate;
     }
+
+    public Activity(String activityType, int duration, String date, double distance, int averageHeartRate) {
+        ActivityType = activityType;
+        Duration = duration;
+        Date = date;
+        Distance = distance;
+        AverageHeartRate = averageHeartRate;
+    }
+
+    public Activity() {
+        ActivityType = "";
+        Duration = 0;
+        Date = "";
+        Distance = 0;
+        AverageHeartRate = 0;
+    }
+
 }
