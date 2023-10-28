@@ -63,4 +63,14 @@ public class Activity {
         AverageHeartRate = 0;
     }
 
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "ActivityType='" + ActivityType + '\'' +
+                ", Duration=" + Duration +
+                ", Date='" + Date + '\'' +
+                ", Distance=" + Distance +
+                ", AverageHeartRate=" + AverageHeartRate +
+                '}';
+    }
 }
