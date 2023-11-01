@@ -11,7 +11,10 @@ public class MainApp {
 
     public static void displayMenu(){
         System.out.println("\n0. Exit");
-        System.out.println("1. Display Activity Data");
+        System.out.println("1. Display Activity Data (Original Order)");
+        System.out.println("2. Display Activity Data By Calories Burned (Descending)");
+        System.out.println("3. Display Activity Data By Date (Ascending)");
+        System.out.println("4. Display Activity Data By Date (Descending)");
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
@@ -76,6 +79,12 @@ public class MainApp {
 
             switch(choice){
                 case 1:
+                    CSVDataTable(activities);
+                    break;
+                case 2:
+                    System.out.println("Calories");
+                    break;
+                case 3:
                     CSVDataTable(activities);
                     break;
             }
