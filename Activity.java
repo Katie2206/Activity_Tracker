@@ -47,18 +47,18 @@ public class Activity {
         AverageHeartRate = averageHeartRate;
     }
 
-    public Activity(String activityType, int duration, String date, double distance, int averageHeartRate) {
+    public Activity(String activityType, String date, int duration, double distance, int averageHeartRate) {
         ActivityType = activityType;
-        Duration = duration;
         Date = date;
+        Duration = duration;
         Distance = distance;
         AverageHeartRate = averageHeartRate;
     }
 
     public Activity() {
         ActivityType = "";
-        Duration = 0;
         Date = "";
+        Duration = 0;
         Distance = 0;
         AverageHeartRate = 0;
     }
@@ -67,8 +67,8 @@ public class Activity {
     public String toString() {
         return "Activity{" +
                 "ActivityType='" + ActivityType + '\'' +
-                ", Duration=" + Duration +
                 ", Date='" + Date + '\'' +
+                ", Duration=" + Duration +
                 ", Distance=" + Distance +
                 ", AverageHeartRate=" + AverageHeartRate +
                 '}';
