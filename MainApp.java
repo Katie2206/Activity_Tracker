@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 
 public class MainApp {
     public static void main(String[] args) throws IOException{
-        
+        CSVDataDisplayed();
     }
 
     public static void displayMenu(){
@@ -56,5 +56,32 @@ public class MainApp {
         for(Activity a: activities) {
             System.out.printf("%-10s %-30s %-10d %-10f %-30d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());
         }
+    }
+
+    public static void CSVDataDisplayed() throws IOException{
+        ArrayList<Activity> activities = new ArrayList<>();
+        readFromCSV("activity_data_10.csv", activities, true);
+        readFromCSV("activity_data_50.csv", activities, true);
+        readFromCSV("activity_data_100.csv", activities, true);
+        readFromCSV("activity_data_1000.csv", activities, true);
+
+        Scanner kbrd = new Scanner(System.in);
+        int choice = 0;
+
+        do{
+            displayMenu();
+            choice = kbrd.nextInt();
+            kbrd.nextLine();
+
+            switch(choice){
+                case 1:
+                    CSVDataTable(activities);
+                    break;
+                case 2:
+                    System.out.println("hello");
+            }
+
+        }while(choice != 0);
+
     }
 }
