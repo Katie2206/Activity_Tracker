@@ -53,9 +53,10 @@ public class MainApp {
     public static void CSVDataTable(ArrayList<Activity> activities) {
         System.out.printf("%-10s %-10s %-10s %-10s %-10s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate");
 
-        for(Activity a: activities) {
-            System.out.printf("%-10s %-30s %-10d %-10f %-30d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());
-        }
+//        for(Activity a: activities) {
+//            System.out.printf("%-10s %-30s %-10d %-10f %-30d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());
+//        }
+        activities.forEach((a) -> {System.out.printf("%-10s %-30s %-10d %-10f %-30d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());});
     }
 
     public static void CSVDataDisplayed() throws IOException{
@@ -77,8 +78,6 @@ public class MainApp {
                 case 1:
                     CSVDataTable(activities);
                     break;
-                case 2:
-                    System.out.println("hello");
             }
 
         }while(choice != 0);
