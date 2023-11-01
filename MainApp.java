@@ -6,8 +6,14 @@ import java.util.StringTokenizer;
 
 public class MainApp {
     public static void main(String[] args) throws IOException{
-
+        
     }
+
+    public static void displayMenu(){
+        System.out.println("\n0. Exit");
+        System.out.println("1. Display Activity Data");
+    }
+
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
         File activityData = new File(file);
         Scanner read = new Scanner(activityData);
@@ -44,14 +50,11 @@ public class MainApp {
         return new Activity(ActivityType, Date, Duration, Distance, AverageHeartRate);
     }
 
-    public static void CSVDataDisplayed() throws IOException{
-        ArrayList<Activity> activities = new ArrayList<>();
-        readFromCSV("activity_data_10.csv", activities, true);
-        readFromCSV("activity_data_50.csv", activities, true);
-        readFromCSV("activity_data_100.csv", activities, true);
-        readFromCSV("activity_data_1000.csv", activities, true);
-        for(Activity a: activities){
-            System.out.println(a.getActivityType() + "\t" + a.getDate() + "\t" + a.getDuration() + "\t" + a.getDistance() + "\t" + a.getAverageHeartRate());
+    public static void CSVDataTable(ArrayList<Activity> activities) {
+        System.out.printf("%-10s %-10s %-10s %-10s %-10s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate");
+
+        for(Activity a: activities) {
+            System.out.printf("%-10s %-30s %-10d %-10f %-30d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());
         }
     }
 }
