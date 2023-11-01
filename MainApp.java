@@ -23,7 +23,7 @@ public class MainApp {
         }
     }
 
-    public static Activity parseLine(String line){
+    public static Activity parseLine(String line) throws IOException{
         String ActivityType;
         String Date;
         int Duration;
@@ -39,5 +39,16 @@ public class MainApp {
         AverageHeartRate = Integer.parseInt(st.nextToken().trim());
 
         return new Activity(ActivityType, Date, Duration, Distance, AverageHeartRate);
+    }
+
+    public static void main(String[] args) throws IOException{
+        ArrayList<Activity> activities = new ArrayList<>();
+        readFromCSV("activity_data_10.csv", activities, true);
+        readFromCSV("activity_data_50.csv", activities, true);
+        readFromCSV("activity_data_100.csv", activities, true);
+        readFromCSV("activity_data_1000.csv", activities, true);
+        for(Activity a: activities){
+            System.out.println(a.getActivityType() + "\t" + a.getDate() + "\t" + a.getDuration() + "\t" + a.getDistance() + "\t" + a.getAverageHeartRate());
+        }
     }
 }
