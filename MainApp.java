@@ -65,9 +65,9 @@ public class MainApp {
     public static void CSVDataDisplayed() throws IOException{
         ArrayList<Activity> activities = new ArrayList<>();
         readFromCSV("activity_data_10.csv", activities, true);
-        readFromCSV("activity_data_50.csv", activities, true);
-        readFromCSV("activity_data_100.csv", activities, true);
-        readFromCSV("activity_data_1000.csv", activities, true);
+//        readFromCSV("activity_data_50.csv", activities, true);
+//        readFromCSV("activity_data_100.csv", activities, true);
+//        readFromCSV("activity_data_1000.csv", activities, true);
 
         Scanner kbrd = new Scanner(System.in);
         int choice = 0;
