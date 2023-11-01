@@ -5,6 +5,9 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class MainApp {
+    public static void main(String[] args) throws IOException{
+
+    }
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
         File activityData = new File(file);
         Scanner read = new Scanner(activityData);
@@ -41,7 +44,7 @@ public class MainApp {
         return new Activity(ActivityType, Date, Duration, Distance, AverageHeartRate);
     }
 
-    public static void main(String[] args) throws IOException{
+    public static void CSVDataDisplayed() throws IOException{
         ArrayList<Activity> activities = new ArrayList<>();
         readFromCSV("activity_data_10.csv", activities, true);
         readFromCSV("activity_data_50.csv", activities, true);
