@@ -15,6 +15,7 @@ public class MainApp {
         System.out.println("2. Display Activity Data By Calories Burned (Descending)");
         System.out.println("3. Display Activity Data By Date (Ascending)");
         System.out.println("4. Display Activity Data By Date (Descending)");
+
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
