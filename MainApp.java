@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -15,6 +16,7 @@ public class MainApp {
         System.out.println("2. Display Activity Data By Calories Burned (Descending)");
         System.out.println("3. Display Activity Data By Date (Ascending)");
         System.out.println("4. Display Activity Data By Date (Descending)");
+        System.out.println("5. Display Activity Data By Duration (Ascending)");
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
@@ -54,20 +56,20 @@ public class MainApp {
     }
 
     public static void CSVDataTable(ArrayList<Activity> activities) {
-        System.out.printf("%-10s %-10s %-10s %-10s %-10s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate");
+        System.out.printf("%-19s %-10s %-10s %-10s %-10s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate");
 
 //        for(Activity a: activities) {
 //            System.out.printf("%-10s %-30s %-10d %-10f %-30d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());
 //        }
-        activities.forEach((a) -> {System.out.printf("%-10s %-30s %-10d %-10f %-30d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());});
+        activities.forEach((a) -> {System.out.printf("%-15s %-17s %-8d %-10.2f %10d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());});
     }
 
     public static void CSVDataDisplayed() throws IOException{
         ArrayList<Activity> activities = new ArrayList<>();
         readFromCSV("activity_data_10.csv", activities, true);
-//        readFromCSV("activity_data_50.csv", activities, true);
-//        readFromCSV("activity_data_100.csv", activities, true);
-//        readFromCSV("activity_data_1000.csv", activities, true);
+        readFromCSV("activity_data_50.csv", activities, true);
+        readFromCSV("activity_data_100.csv", activities, true);
+        readFromCSV("activity_data_1000.csv", activities, true);
 
         Scanner kbrd = new Scanner(System.in);
         int choice = 0;
@@ -85,8 +87,18 @@ public class MainApp {
                     System.out.println("Calories");
                     break;
                 case 3:
+//                    CSVDataTable(activities);
+                    System.out.println("Date (Ascending)");
+                    break;
+                case 4:
+//                    CSVDataTable(activities);
+                    System.out.println("Date (Descending)");
+                    break;
+                case 5:
+                    Collections.sort(activities, new ActivityDurationAsc());
                     CSVDataTable(activities);
                     break;
+
             }
 
         }while(choice != 0);
