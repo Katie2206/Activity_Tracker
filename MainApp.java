@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -15,6 +16,7 @@ public class MainApp {
         System.out.println("2. Display Activity Data By Calories Burned (Descending)");
         System.out.println("3. Display Activity Data By Date (Ascending)");
         System.out.println("4. Display Activity Data By Date (Descending)");
+        System.out.println("5. Display Activity Data By Duration (Ascending)");
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
@@ -85,6 +87,15 @@ public class MainApp {
                     System.out.println("Calories");
                     break;
                 case 3:
+                    System.out.println("Date (Ascending)");
+//                    CSVDataTable(activities);
+                    break;
+                case 4:
+                    System.out.println("Date (Descending)");
+//                    CSVDataTable(activities);
+                    break;
+                case 5:
+                    Collections.sort(activities, new ActivityDurationAsc());
                     CSVDataTable(activities);
                     break;
             }
