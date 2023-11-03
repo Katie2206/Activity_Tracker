@@ -64,17 +64,7 @@ public class MainApp {
         activities.forEach((a) -> {System.out.printf("%-10s %-30s %-10d %-10f %-30d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());});
     }
 
-    public static void displayMinDuration(int wantedDuration, ArrayList<Activity> activities ){
-        ArrayList<Activity> newData = new ArrayList<>();
 
-        for(Activity a: activities){
-            if(a.getDuration() >= wantedDuration){
-                newData.add(a);
-            }
-        }
-
-        CSVDataTable(newData);
-    }
 
     public static void CSVDataDisplayed() throws IOException{
         ArrayList<Activity> activities = new ArrayList<>();
@@ -102,11 +92,7 @@ public class MainApp {
                     CSVDataTable(activities);
                     break;
 
-                case 5:
-                    System.out.println("Insert Duration (In Mins)");
-                    int wantedDuration = kbrd.nextInt();
-                    displayMinDuration(wantedDuration, activities);
-                    break;
+
             }
 
         }while(choice != 0);
