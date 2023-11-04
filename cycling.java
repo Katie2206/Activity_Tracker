@@ -1,6 +1,6 @@
-public class swimming extends Activity{
+public class cycling extends Activity{
     private double kilometresPerHour;
-    public swimming(String ActivityType, int Duration, String Date, double Distance, int AverageHeartRate, double kmh){
+    public cycling(String ActivityType, int Duration, String Date, double Distance, int AverageHeartRate, double kmh){
         super(ActivityType, Duration, Date, Distance, AverageHeartRate);
         this.kilometresPerHour = kmh;
     }
