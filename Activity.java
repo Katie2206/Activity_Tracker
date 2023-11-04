@@ -7,6 +7,8 @@ public class Activity {
     private double Distance;
     private int AverageHeartRate;
 
+    public static enum Intensity{VERY_LIGHT, LIGHT, MODERATE, VIGOROUS, VERY_VIGOROUS};
+
     public String getActivityType() {
         return ActivityType;
     }
