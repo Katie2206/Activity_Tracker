@@ -57,7 +57,7 @@ public class MainApp {
         Distance = Double.parseDouble(st.nextToken().trim());
         AverageHeartRate = Integer.parseInt(st.nextToken().trim());
 
-        return new Activity(ActivityType, Date, Duration, Distance, AverageHeartRate);
+        return new Activity(ActivityType, Duration, Date, Distance, AverageHeartRate);
     }
 
     public static void CSVDataTable(ArrayList<Activity> activities) {

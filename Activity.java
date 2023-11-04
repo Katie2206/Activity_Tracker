@@ -47,7 +47,7 @@ public class Activity {
         AverageHeartRate = averageHeartRate;
     }
 
-    public Activity(String activityType, String date, int duration, double distance, int averageHeartRate) {
+    public Activity(String activityType, int duration, String date, double distance, int averageHeartRate) {
         ActivityType = activityType;
         Date = date;
         Duration = duration;
