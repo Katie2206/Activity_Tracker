@@ -18,7 +18,9 @@ public class MainApp {
         System.out.println("4. Display Activity Data By Date (Descending)");
         System.out.println("5. Display Activity Data By Duration (Ascending)");
         System.out.println("6. Display Activity Data By Duration (Descending)");
-        System.out.println("8. Display Activity Data By Minimum Duration");
+        System.out.println("7. Display Activity Data By Activity Type");
+        System.out.println("8. Display Activity Data By Distance (Ascending)");
+        System.out.println("9. Display Activity Data By Minimum Duration");
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
@@ -116,7 +118,15 @@ public class MainApp {
                     Collections.sort(activities, new ActivityDurationDesc());
                     CSVDataTable(activities);
                     break;
+                case 7:
+                    System.out.println("Activity Type");
+//                    CSVDataTable(activities);
+                    break;
                 case 8:
+                    Collections.sort(activities, new ActivityDistanceAsc());
+                    CSVDataTable(activities);
+                    break;
+                case 9:
                     System.out.println("Insert Duration (In Mins)");
                     int wantedDuration = kbrd.nextInt();
                     displayMinDuration(wantedDuration, activities);
