@@ -17,6 +17,7 @@ public class MainApp {
         System.out.println("3. Display Activity Data By Date (Ascending)");
         System.out.println("4. Display Activity Data By Date (Descending)");
         System.out.println("5. Display Activity Data By Duration (Ascending)");
+        System.out.println("6. Display Activity Data By Duration (Descending)");
         System.out.println("8. Display Activity Data By Minimum Duration");
     }
 
@@ -111,7 +112,10 @@ public class MainApp {
                     Collections.sort(activities, new ActivityDurationAsc());
                     CSVDataTable(activities);
                     break;
-
+                case 6:
+                    Collections.sort(activities, new ActivityDurationDesc());
+                    CSVDataTable(activities);
+                    break;
                 case 8:
                     System.out.println("Insert Duration (In Mins)");
                     int wantedDuration = kbrd.nextInt();
