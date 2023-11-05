@@ -6,6 +6,7 @@ public class  Activity {
     private String Date;
     private double Distance;
     private int AverageHeartRate;
+    private double calories;
 
     public static enum Intensity{VERY_LIGHT, LIGHT, MODERATE, VIGOROUS, VERY_VIGOROUS};
 
@@ -29,6 +30,12 @@ public class  Activity {
         return AverageHeartRate;
     }
 
+    public double getCalories(){
+        return calories;
+    }
+
+
+
     public void setActivityType(String activityType) {
         ActivityType = activityType;
     }
@@ -47,6 +54,10 @@ public class  Activity {
 
     public void setAverageHeartRate(int averageHeartRate) {
         AverageHeartRate = averageHeartRate;
+    }
+
+    public void setCalories(double calories) {
+        this.calories = calories;
     }
 
     public Activity(String activityType, int duration, String date, double distance, int averageHeartRate) {
