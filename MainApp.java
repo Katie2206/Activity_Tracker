@@ -163,6 +163,26 @@ public class MainApp {
          System.out.printf("Running: %.2fKM %nSwimming: %.2fKM %nCycling: %.2fKM %n", avrgDistanceRun, avrgDistanceSwim, avrgDistanceCycle);
 
      }
+
+    public static void displayActivity(String activityType, ArrayList<Activity> activities){
+        ArrayList<Activity> activityWanted = new ArrayList<>();
+
+        for(Activity a: activities){
+            if(a.getActivityType().equalsIgnoreCase(activityType)){
+                activityWanted.add(a);
+            }
+        }
+
+        Comparator<Activity> activityTypeComparator = new Comparator<Activity>() {
+            public int compare(Activity a1, Activity a2) {
+                return a1.getActivityType().compareToIgnoreCase(a2.getActivityType());
+            }
+        };
+
+        CSVDataTable(activityWanted);
+
+    }
+
     public static void CSVDataTable(ArrayList<Activity> activities) {
         System.out.printf("%-19s %-10s %-10s %-10s %-10s %10s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate", "Calories");
 //        for(Activity a: activities) {
@@ -240,8 +260,9 @@ public class MainApp {
                     CSVDataTable(activities);
                     break;
                 case 7:
-                    Collections.sort(activities, activityTypeComparator);
-                    CSVDataTable(activities);
+                    System.out.println("Enter Activity Type");
+                    String activityType = kbrd.nextLine();
+                    displayActivity(activityType, activities);
                     break;
                 case 8:
                     Collections.sort(activities, new ActivityDistanceAsc());
