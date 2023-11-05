@@ -260,9 +260,8 @@ public class MainApp {
                     CSVDataTable(activities);
                     break;
                 case 7:
-                    System.out.println("Enter Activity Type");
-                    String activityType = kbrd.nextLine();
-                    displayActivity(activityType, activities);
+                    Collections.sort(activities, activityTypeComparator);
+                    CSVDataTable(activities);
                     break;
                 case 8:
                     Collections.sort(activities, new ActivityDistanceAsc());
@@ -283,10 +282,13 @@ public class MainApp {
                     displayAboveMinDistance(aboveThisDistance, activities);
                     break;
                 case 12:
-
                     averageDistance(activities);
                     break;
-
+                case 13:
+                    System.out.println("Enter Activity Type");
+                    String activityType = kbrd.nextLine();
+                    displayActivity(activityType, activities);
+                    break;
             }
 
         }while(choice != 0);
