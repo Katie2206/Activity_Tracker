@@ -22,13 +22,8 @@ public class MainApp {
         System.out.println("8. Display Activity Data By Distance (Ascending)");
         System.out.println("9. Display Activity Data By Distance (Descending)");
         System.out.println("10. Display Activity Data By Minimum Duration");
-<<<<<<< Updated upstream
         System.out.println("11. Display Activity Data By Minimum Distance");
         System.out.println("12. Display Average of Distance per Activity");
-=======
-        System.out.println("11. Display Average of Distance per Activity");
-        System.out.println("12. Display Activity Data By Minimum Distance");
->>>>>>> Stashed changes
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
