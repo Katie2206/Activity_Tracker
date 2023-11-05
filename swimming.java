@@ -8,6 +8,7 @@ public class swimming extends Activity{
 
 
 
+
     public double getKilometresPerHour() {
         return kilometresPerHour;
     }

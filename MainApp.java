@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 public class MainApp {
     public static void main(String[] args) throws IOException{
+
         CSVDataDisplayed();
     }
 
@@ -62,6 +63,67 @@ public class MainApp {
         return new Activity(ActivityType, Duration, Date, Distance, AverageHeartRate);
     }
 
+    public static void calculateCalories(ArrayList<Activity> activities){
+        double KmH = 0;
+        double hours = 0;
+        double calories = 0;
+        for (Activity a : activities){
+            hours = (double)a.getDuration()/60;
+            KmH = a.getDistance()/hours;
+
+            if (a.getActivityType().equals("Running")){
+                if (KmH < 4){
+                    calories = a.getDuration()*4.1;
+
+                } else if (KmH >= 4 && KmH < 8 ) {
+                    calories = a.getDuration()*7.2;
+                }
+                else if (KmH >= 8 && KmH < 12 ) {
+                    calories = a.getDuration()*10;
+                }
+                else if (KmH >= 12 && KmH < 16 ) {
+                    calories = a.getDuration()*15.4;
+                }else if (KmH >= 16 ) {
+                    calories = a.getDuration()*20.8 ;
+                }
+            }
+            else if (a.getActivityType().equals("Swimming")){
+                if (KmH < 0.5){
+                    calories = a.getDuration()*5;
+
+                } else if (KmH >= 0.25 && KmH < 1.25 ) {
+                    calories = a.getDuration()*6.3;
+                }
+                else if (KmH >= 1.25 && KmH < 2) {
+                    calories = a.getDuration()*7.6;
+                }
+                else if (KmH >= 2 && KmH < 2.75 ) {
+                    calories = a.getDuration()*8.9;
+                }else if (KmH >= 2.75 ) {
+                    calories = a.getDuration()*10.2 ;
+                }
+            }
+            else if (a.getActivityType().equals("Cycling")){
+                if (KmH < 8){
+                    calories = a.getDuration()*2;
+
+                } else if (KmH >= 8 && KmH < 16 ) {
+                    calories = a.getDuration()*5;
+                }
+                else if (KmH >= 16 && KmH < 25) {
+                    calories = a.getDuration()*7;
+                }
+                else if (KmH >= 25 && KmH < 33 ) {
+                    calories = a.getDuration()*13;
+                }else if (KmH >= 33) {
+                    calories = a.getDuration()*15 ;
+                }
+            }
+
+            a.setCalories(calories);
+        }
+    }
+
     public static void averageDistance(ArrayList<Activity> activities /*String chosenActivity*/){
         /*double count = 0;
         double sum = 0;*/
@@ -110,12 +172,12 @@ public class MainApp {
 
      }
         public static void CSVDataTable(ArrayList<Activity> activities) {
-        System.out.printf("%-19s %-10s %-10s %-10s %-10s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate");
+        System.out.printf("%-19s %-10s %-10s %-10s %-10s %10s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate", "Calories");
 
 //        for(Activity a: activities) {
 //            System.out.printf("%-10s %-30s %-10d %-10f %-30d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());
 //        }
-        activities.forEach((a) -> {System.out.printf("%-15s %-17s %-10d %-15.2f %-5d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());});
+        activities.forEach((a) -> {System.out.printf("%-15s %-17s %-10d %-15.2f %-5d %15.2f\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate(), a.getCalories());});
     }
 
     public static void displayAboveMinDistance(double aboveThisDistance, ArrayList<Activity> activities){
@@ -146,7 +208,7 @@ public class MainApp {
 //        readFromCSV("activity_data_50.csv", activities, true);
 //        readFromCSV("activity_data_100.csv", activities, true);
 //        readFromCSV("activity_data_1000.csv", activities, true);
-
+        calculateCalories(activities);
         Scanner kbrd = new Scanner(System.in);
         int choice = 0;
 
