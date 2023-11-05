@@ -22,7 +22,7 @@ public class MainApp {
         System.out.println("8. Display Activity Data By Distance (Ascending)");
         System.out.println("9. Display Activity Data By Distance (Descending)");
         System.out.println("10. Display Activity Data By Minimum Duration");
-        System.out.println("11. Display Activity Data By Minimum Duration");
+        System.out.println("11. Display Average of Distance per Activity");
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
@@ -61,19 +61,20 @@ public class MainApp {
         return new Activity(ActivityType, Duration, Date, Distance, AverageHeartRate);
     }
 
-     public static void averageDistance(ArrayList<Activity> activities, String chosenActivity){
-        double count = 0;
-        double sum = 0;
-         /* double countSwim = 0;
+     public static void averageDistance(ArrayList<Activity> activities /*String chosenActivity*/){
+        /*double count = 0;
+        double sum = 0;*/
+         double countRun = 0;
+         double countSwim = 0;
          double countCycle = 0;
       double sumRun = 0;
         double sumSwim = 0;
         double sumCycle = 0;
          double avrgDistanceRun = 0.0;
          double avrgDistanceSwim = 0.0;
-         double avrgDistanceCycle = 0.0;*/
-        double avrgDistance = 0.0;
-         for (Activity a : activities){
+         double avrgDistanceCycle = 0.0;
+       // double avrgDistance = 0.0;
+         /*for (Activity a : activities){
              if (a.getActivityType().equals(chosenActivity)){
                  sum+= a.getDistance();
                  count++;
@@ -82,7 +83,29 @@ public class MainApp {
          }
          avrgDistance = sum/count;
 
-         System.out.printf("You did %s for an average of %.2fKM%n",  chosenActivity, avrgDistance);
+         System.out.printf("You did %s for an average of %.2fKM%n",  chosenActivity, avrgDistance);*/
+
+         for (Activity a : activities){
+             if (a.getActivityType().equals("Running")){
+                 sumRun+= a.getDistance();
+                 countRun++;
+             }
+             else if (a.getActivityType().equals("Swimming")){
+                 sumSwim+= a.getDistance();
+                 countSwim++;
+             }
+             else if (a.getActivityType().equals("Cycling")){
+                 sumCycle+= a.getDistance();
+                 countCycle++;
+             }
+
+         }
+         avrgDistanceRun = sumRun/countRun;
+          avrgDistanceSwim = sumSwim/countSwim;
+        avrgDistanceCycle = sumCycle/countCycle;
+
+         System.out.println("--------- Average Distance --------- ");
+         System.out.printf("Running: %.2fKM %nSwimming: %.2fKM %nCycling: %.2fKM %n", avrgDistanceRun, avrgDistanceSwim, avrgDistanceCycle);
 
      }
 
@@ -164,9 +187,8 @@ public class MainApp {
                     break;
 
                 case 11:
-                    System.out.println("What Activity would you like to inspect");
-                    String wantedActivity = kbrd.nextLine();
-                    averageDistance(activities, wantedActivity);
+
+                    averageDistance(activities);
                     break;
 
             }
