@@ -1,9 +1,6 @@
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class MainApp {
     public static void main(String[] args) throws IOException{
@@ -18,7 +15,7 @@ public class MainApp {
         System.out.println("4. Display Activity Data By Date (Descending)");
         System.out.println("5. Display Activity Data By Duration (Ascending)");
         System.out.println("6. Display Activity Data By Duration (Descending)");
-        System.out.println("7. Display Activity Data By Activity Type");
+        System.out.println("7. Display Activity Data By Activity Type (Alphabetical Order)");
         System.out.println("8. Display Activity Data By Distance (Ascending)");
         System.out.println("9. Display Activity Data By Distance (Descending)");
         System.out.println("10. Display Activity Data By Minimum Duration");
@@ -109,7 +106,7 @@ public class MainApp {
          System.out.printf("Running: %.2fKM %nSwimming: %.2fKM %nCycling: %.2fKM %n", avrgDistanceRun, avrgDistanceSwim, avrgDistanceCycle);
 
      }
-        public static void CSVDataTable(ArrayList<Activity> activities) {
+    public static void CSVDataTable(ArrayList<Activity> activities) {
         System.out.printf("%-19s %-10s %-10s %-10s %-10s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate");
 
 //        for(Activity a: activities) {
@@ -147,6 +144,12 @@ public class MainApp {
 //        readFromCSV("activity_data_100.csv", activities, true);
 //        readFromCSV("activity_data_1000.csv", activities, true);
 
+        Comparator<Activity> activityTypeComparator = new Comparator<Activity>() {
+            public int compare(Activity a1, Activity a2) {
+                return a1.getActivityType().compareToIgnoreCase(a2.getActivityType());
+            }
+        };
+
         Scanner kbrd = new Scanner(System.in);
         int choice = 0;
 
@@ -179,8 +182,8 @@ public class MainApp {
                     CSVDataTable(activities);
                     break;
                 case 7:
-                    System.out.println("Activity Type");
-//                    CSVDataTable(activities);
+                    Collections.sort(activities, activityTypeComparator);
+                    CSVDataTable(activities);
                     break;
                 case 8:
                     Collections.sort(activities, new ActivityDistanceAsc());
