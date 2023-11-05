@@ -21,7 +21,8 @@ public class MainApp {
         System.out.println("10. Display Activity Data By Minimum Duration");
         System.out.println("11. Display Activity Data By Minimum Distance");
         System.out.println("12. Display Average of Distance per Activity");
-        System.out.println("13. Display Subset Of Activity Data By Activity Type");
+        System.out.println("13. Display Average of Distance per Activity");
+        System.out.println("14. Display Subset Of Activity Data By Activity Type");
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
@@ -166,6 +167,42 @@ public class MainApp {
 
      }
 
+    public static void averageCalories(ArrayList<Activity> activities ){
+
+        double countRun = 0;
+        double countSwim = 0;
+        double countCycle = 0;
+        double sumRun = 0;
+        double sumSwim = 0;
+        double sumCycle = 0;
+        double avrgCaloriesRun = 0.0;
+        double avrgCaloriesSwim = 0.0;
+        double avrgCaloriesCycle = 0.0;
+
+        for (Activity a : activities){
+            if (a.getActivityType().equals("Running")){
+                sumRun+= a.getCalories();
+                countRun++;
+            }
+            else if (a.getActivityType().equals("Swimming")){
+                sumSwim+= a.getCalories();
+                countSwim++;
+            }
+            else if (a.getActivityType().equals("Cycling")){
+                sumCycle+= a.getCalories();
+                countCycle++;
+            }
+
+        }
+        avrgCaloriesRun = sumRun/countRun;
+        avrgCaloriesSwim = sumSwim/countSwim;
+        avrgCaloriesCycle = sumCycle/countCycle;
+
+        System.out.println("--------- Average Calories --------- ");
+        System.out.printf("Running: %.2fKcal %nSwimming: %.2fKcal %nCycling: %.2fKcal %n", avrgCaloriesRun, avrgCaloriesSwim, avrgCaloriesCycle);
+
+    }
+
     public static void displayActivity(String activityType, ArrayList<Activity> activities){
         ArrayList<Activity> activityWanted = new ArrayList<>();
 
@@ -291,7 +328,12 @@ public class MainApp {
                 case 12:
                     averageDistance(activities);
                     break;
+
                 case 13:
+                    averageCalories(activities);
+                    break;
+
+                case 14:
                     System.out.println("Enter Activity Type");
                     String activityType = kbrd.nextLine();
                     displayActivity(activityType, activities);
