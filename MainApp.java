@@ -61,14 +61,25 @@ public class MainApp {
         return new Activity(ActivityType, Duration, Date, Distance, AverageHeartRate);
     }
 
-    public static void calculateCalories(ArrayList<Activity> activities){
+    public static double calculateKmH(Activity a){
+
         double KmH = 0;
         double hours = 0;
+
+        hours = (double)a.getDuration()/60;
+        KmH = a.getDistance()/hours;
+
+        return KmH;
+    }
+
+    public static void calculateCalories(ArrayList<Activity> activities){
+        double KmH = 0;
+
         double calories = 0;
 
         for (Activity a : activities){
-            hours = (double)a.getDuration()/60;
-            KmH = a.getDistance()/hours;
+
+            KmH = calculateKmH(a);
             if (a.getActivityType().equals("Running")){
                 if (KmH < 4){
                     calories = a.getDuration()*4.1;
