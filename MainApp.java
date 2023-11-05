@@ -22,7 +22,8 @@ public class MainApp {
         System.out.println("8. Display Activity Data By Distance (Ascending)");
         System.out.println("9. Display Activity Data By Distance (Descending)");
         System.out.println("10. Display Activity Data By Minimum Duration");
-        System.out.println("11. Display Average of Distance per Activity");
+        System.out.println("11. Display Activity Data By Minimum Distance");
+        System.out.println("12. Display Average of Distance per Activity");
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
@@ -61,7 +62,7 @@ public class MainApp {
         return new Activity(ActivityType, Duration, Date, Distance, AverageHeartRate);
     }
 
-     public static void averageDistance(ArrayList<Activity> activities /*String chosenActivity*/){
+    public static void averageDistance(ArrayList<Activity> activities /*String chosenActivity*/){
         /*double count = 0;
         double sum = 0;*/
          double countRun = 0;
@@ -108,14 +109,23 @@ public class MainApp {
          System.out.printf("Running: %.2fKM %nSwimming: %.2fKM %nCycling: %.2fKM %n", avrgDistanceRun, avrgDistanceSwim, avrgDistanceCycle);
 
      }
-
-    public static void CSVDataTable(ArrayList<Activity> activities) {
+        public static void CSVDataTable(ArrayList<Activity> activities) {
         System.out.printf("%-19s %-10s %-10s %-10s %-10s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate");
 
 //        for(Activity a: activities) {
 //            System.out.printf("%-10s %-30s %-10d %-10f %-30d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());
 //        }
         activities.forEach((a) -> {System.out.printf("%-15s %-17s %-10d %-15.2f %-5d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());});
+    }
+
+    public static void displayAboveMinDistance(double aboveThisDistance, ArrayList<Activity> activities){
+        ArrayList<Activity> dataWanted = new ArrayList<>();
+        for(Activity a: activities){
+            if(a.getDistance() >= aboveThisDistance){
+                dataWanted.add(a);
+            }
+        }
+        CSVDataTable(dataWanted);
     }
 
     public static void displayMinDuration(int wantedDuration, ArrayList<Activity> activities ){
@@ -185,8 +195,12 @@ public class MainApp {
                     int wantedDuration = kbrd.nextInt();
                     displayMinDuration(wantedDuration, activities);
                     break;
-
                 case 11:
+                    System.out.println("Insert Distance");
+                    int aboveThisDistance = kbrd.nextInt();
+                    displayAboveMinDistance(aboveThisDistance, activities);
+                    break;
+                case 12:
 
                     averageDistance(activities);
                     break;

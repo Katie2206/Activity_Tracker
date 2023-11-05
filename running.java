@@ -12,7 +12,7 @@ public class running extends Activity{
         this.kilometresPerHour = kilometresPerHour;
     }
 
-    public Intensity getIntensity(){
+    public Intensity getIntensityKmh(){
         if(kilometresPerHour < 4){
             return Intensity.VERY_LIGHT;
         }else if(kilometresPerHour >= 4 && kilometresPerHour < 8){
@@ -27,5 +27,9 @@ public class running extends Activity{
             return Intensity.VERY_VIGOROUS;
         }
     }
+
+//    public Intensity getIntensitySwimming(){
+//
+//    }
 
 }
