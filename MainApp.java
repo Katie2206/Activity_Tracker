@@ -21,6 +21,7 @@ public class MainApp {
         System.out.println("10. Display Activity Data By Minimum Duration");
         System.out.println("11. Display Activity Data By Minimum Distance");
         System.out.println("12. Display Average of Distance per Activity");
+        System.out.println("13. Display Subset Of Activity Data By Activity Type");
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
@@ -63,6 +64,7 @@ public class MainApp {
         double KmH = 0;
         double hours = 0;
         double calories = 0;
+
         for (Activity a : activities){
             hours = (double)a.getDuration()/60;
             KmH = a.getDistance()/hours;
@@ -122,9 +124,9 @@ public class MainApp {
          double countRun = 0;
          double countSwim = 0;
          double countCycle = 0;
-      double sumRun = 0;
-        double sumSwim = 0;
-        double sumCycle = 0;
+         double sumRun = 0;
+         double sumSwim = 0;
+         double sumCycle = 0;
          double avrgDistanceRun = 0.0;
          double avrgDistanceSwim = 0.0;
          double avrgDistanceCycle = 0.0;
@@ -180,7 +182,6 @@ public class MainApp {
         };
 
         CSVDataTable(activityWanted);
-
     }
 
     public static void CSVDataTable(ArrayList<Activity> activities) {
@@ -226,6 +227,11 @@ public class MainApp {
                 return a1.getActivityType().compareToIgnoreCase(a2.getActivityType());
             }
         };
+        Comparator<Activity> caloriesComparator = new Comparator<Activity>() {
+            public int compare(Activity c1, Activity c2) {
+                return (int)((c2.getCalories() - c1.getCalories()));
+            }
+        };
 
         calculateCalories(activities);
         Scanner kbrd = new Scanner(System.in);
@@ -241,7 +247,8 @@ public class MainApp {
                     CSVDataTable(activities);
                     break;
                 case 2:
-                    System.out.println("Calories");
+                    Collections.sort(activities, caloriesComparator);
+                    CSVDataTable(activities);
                     break;
                 case 3:
                     System.out.println("Date (Ascending)");
