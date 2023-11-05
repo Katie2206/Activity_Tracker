@@ -22,6 +22,7 @@ public class MainApp {
         System.out.println("8. Display Activity Data By Distance (Ascending)");
         System.out.println("9. Display Activity Data By Distance (Descending)");
         System.out.println("10. Display Activity Data By Minimum Duration");
+        System.out.println("11. Display Activity Data By Minimum Duration");
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
@@ -59,6 +60,31 @@ public class MainApp {
 
         return new Activity(ActivityType, Duration, Date, Distance, AverageHeartRate);
     }
+
+     public static void averageDistance(ArrayList<Activity> activities, String chosenActivity){
+        double count = 0;
+        double sum = 0;
+         /* double countSwim = 0;
+         double countCycle = 0;
+      double sumRun = 0;
+        double sumSwim = 0;
+        double sumCycle = 0;
+         double avrgDistanceRun = 0.0;
+         double avrgDistanceSwim = 0.0;
+         double avrgDistanceCycle = 0.0;*/
+        double avrgDistance = 0.0;
+         for (Activity a : activities){
+             if (a.getActivityType().equals(chosenActivity)){
+                 sum+= a.getDistance();
+                 count++;
+             }
+
+         }
+         avrgDistance = sum/count;
+
+         System.out.printf("You did %s for an average of %.2fKM%n",  chosenActivity, avrgDistance);
+
+     }
 
     public static void CSVDataTable(ArrayList<Activity> activities) {
         System.out.printf("%-19s %-10s %-10s %-10s %-10s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate");
@@ -135,6 +161,12 @@ public class MainApp {
                     System.out.println("Insert Duration (In Mins)");
                     int wantedDuration = kbrd.nextInt();
                     displayMinDuration(wantedDuration, activities);
+                    break;
+
+                case 11:
+                    System.out.println("What Activity would you like to inspect");
+                    String wantedActivity = kbrd.nextLine();
+                    averageDistance(activities, wantedActivity);
                     break;
 
             }

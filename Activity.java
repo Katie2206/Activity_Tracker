@@ -1,5 +1,5 @@
 
-public class Activity {
+public class  Activity {
 
     private String ActivityType;
     private int Duration;
@@ -64,6 +64,7 @@ public class Activity {
         Distance = 0;
         AverageHeartRate = 0;
     }
+
 
     @Override
     public String toString() {
