@@ -83,46 +83,61 @@ public class MainApp {
             if (a.getActivityType().equals("Running")){
                 if (KmH < 4){
                     calories = a.getDuration()*4.1;
+                    a.setIntensity(String.valueOf(Activity.Intensity.VERY_LIGHT));
                 } else if (KmH >= 4 && KmH < 8 ) {
                     calories = a.getDuration()*7.2;
+                    a.setIntensity(String.valueOf(Activity.Intensity.LIGHT));
                 }
                 else if (KmH >= 8 && KmH < 12 ) {
                     calories = a.getDuration()*10;
+                    a.setIntensity(String.valueOf(Activity.Intensity.MODERATE));
                 }
                 else if (KmH >= 12 && KmH < 16 ) {
                     calories = a.getDuration()*15.4;
+                    a.setIntensity(String.valueOf(Activity.Intensity.VIGOROUS));
                 }else if (KmH >= 16 ) {
                     calories = a.getDuration()*20.8 ;
+                    a.setIntensity(String.valueOf(Activity.Intensity.VERY_VIGOROUS));
                 }
             }
             else if (a.getActivityType().equals("Swimming")){
                 if (KmH < 0.5){
                     calories = a.getDuration()*5;
+                    a.setIntensity(String.valueOf(Activity.Intensity.VERY_LIGHT));
                 } else if (KmH >= 0.25 && KmH < 1.25 ) {
                     calories = a.getDuration()*6.3;
+                    a.setIntensity(String.valueOf(Activity.Intensity.LIGHT));
                 }
                 else if (KmH >= 1.25 && KmH < 2) {
                     calories = a.getDuration()*7.6;
+                    a.setIntensity(String.valueOf(Activity.Intensity.MODERATE));
                 }
                 else if (KmH >= 2 && KmH < 2.75 ) {
                     calories = a.getDuration()*8.9;
+                    a.setIntensity(String.valueOf(Activity.Intensity.VIGOROUS));
                 }else if (KmH >= 2.75 ) {
-                    calories = a.getDuration()*10.2 ;
+                    calories = a.getDuration()*10.2  ;
+                    a.setIntensity(String.valueOf(Activity.Intensity.VERY_VIGOROUS));
                 }
             }
             else if (a.getActivityType().equals("Cycling")){
                 if (KmH < 8){
                     calories = a.getDuration()*2;
+                    a.setIntensity(String.valueOf(Activity.Intensity.VERY_LIGHT));
                 } else if (KmH >= 8 && KmH < 16 ) {
                     calories = a.getDuration()*5;
+                    a.setIntensity(String.valueOf(Activity.Intensity.LIGHT));
                 }
                 else if (KmH >= 16 && KmH < 25) {
                     calories = a.getDuration()*7;
+                    a.setIntensity(String.valueOf(Activity.Intensity.MODERATE));
                 }
                 else if (KmH >= 25 && KmH < 33 ) {
                     calories = a.getDuration()*13;
+                    a.setIntensity(String.valueOf(Activity.Intensity.VIGOROUS));
                 }else if (KmH >= 33) {
                     calories = a.getDuration()*15 ;
+                    a.setIntensity(String.valueOf(Activity.Intensity.VERY_VIGOROUS));
                 }
             }
             a.setCalories(calories);
@@ -233,11 +248,11 @@ public class MainApp {
     }
 
     public static void CSVDataTable(ArrayList<Activity> activities) {
-        System.out.printf("%-19s %-10s %-10s %-10s %-10s %10s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate", "Calories");
+        System.out.printf("%-19s %-10s %-10s %-10s %-10s %10s %15s\n", "Activity Type", "Date", "Duration", "Distance", "Average Heart Rate", "Calories", "Intensity");
 //        for(Activity a: activities) {
 //            System.out.printf("%-10s %-30s %-10d %-10f %-30d\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate());
 //        }
-        activities.forEach((a) -> {System.out.printf("%-15s %-17s %-10d %-15.2f %-5d %15.2f\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate(), a.getCalories());});
+        activities.forEach((a) -> {System.out.printf("%-15s %-17s %-10d %-15.2f %-5d %15.2f %15s\n", a.getActivityType(), a.getDate(), a.getDuration(), a.getDistance(), a.getAverageHeartRate(), a.getCalories(), a.getIntensity());});
     }
 
 
