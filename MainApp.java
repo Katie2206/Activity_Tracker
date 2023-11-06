@@ -266,7 +266,7 @@ public class MainApp {
     public static void CSVDataDisplayed() throws IOException{
         ArrayList<Activity> activities = new ArrayList<>();
         readFromCSV("activity_data_10.csv", activities, true);
-//        readFromCSV("activity_data_50.csv", activities, true);
+   //    readFromCSV("activity_data_50.csv", activities, true);
 //        readFromCSV("activity_data_100.csv", activities, true);
 //        readFromCSV("activity_data_1000.csv", activities, true);
 
@@ -300,11 +300,13 @@ public class MainApp {
                     break;
                 case 3:
                     System.out.println("Date (Ascending)");
-//                    CSVDataTable(activities);
+                    Collections.sort(activities, new DateComparator());
+           CSVDataTable(activities);
                     break;
                 case 4:
                     System.out.println("Date (Descending)");
-//                    CSVDataTable(activities);
+                    Collections.sort(activities, new DateComparatorDesc());
+                   CSVDataTable(activities);
                     break;
                 case 5:
                     Collections.sort(activities, new ActivityDurationAsc());
