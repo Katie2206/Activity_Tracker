@@ -21,8 +21,9 @@ public class MainApp {
         System.out.println("10. Display Activity Data By Minimum Duration");
         System.out.println("11. Display Activity Data By Minimum Distance");
         System.out.println("12. Display Average of Distance per Activity");
-        System.out.println("13. Display Average of Distance per Activity");
+        System.out.println("13. Display Average of Calories per Activity");
         System.out.println("14. Display Subset Of Activity Data By Activity Type");
+        System.out.println("15. Display Activity Type With Natural Ordering Using Binary Search");
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
@@ -58,7 +59,7 @@ public class MainApp {
         Distance = Double.parseDouble(st.nextToken().trim());
         AverageHeartRate = Integer.parseInt(st.nextToken().trim());
 
-        return new Activity(ActivityType, Duration, Date, Distance, AverageHeartRate);
+        return new Activity(ActivityType, Date, Duration, Distance, AverageHeartRate);
     }
 
     public static double calculateKmH(Activity a){
@@ -229,6 +230,18 @@ public class MainApp {
 
     }
 
+    public static void displayActivitiesBinary(ArrayList<Activity> activities){
+        Comparator<Activity> compareActivityType = (a1, a2) -> a1.getActivityType().compareToIgnoreCase(a2.getActivityType());
+        activities.sort(compareActivityType);
+        Activity keyType = new Activity("Running", "16/01/2020", 42,  4.46, 139);
+        int index = Collections.binarySearch(activities, keyType, compareActivityType);
+        if(index >= 0){
+            System.out.println("Sorted " + activities.get(index) + " At Line " + index);
+        }else{
+            System.out.println("Activity Not Found");
+        }
+    }
+
     public static void displayActivity(String activityType, ArrayList<Activity> activities){
         ArrayList<Activity> activityWanted = new ArrayList<>();
 
@@ -242,6 +255,7 @@ public class MainApp {
             public int compare(Activity a1, Activity a2) {
                 return a1.getActivityType().compareToIgnoreCase(a2.getActivityType());
             }
+
         };
 
         CSVDataTable(activityWanted);
@@ -311,7 +325,9 @@ public class MainApp {
                     CSVDataTable(activities);
                     break;
                 case 2:
-                    Collections.sort(activities, caloriesComparator);
+//                    Collections.sort(activities, caloriesComparator);
+                    Comparator<Activity> compare = (a1, a2) -> (int)(a2.getCalories() - (a1.getCalories()));
+                    activities.sort(compare);
                     CSVDataTable(activities);
                     break;
                 case 3:
@@ -332,8 +348,8 @@ public class MainApp {
                     break;
                 case 7:
 //                    Collections.sort(activities, activityTypeComparator);
-                    Comparator<Activity> compare = (a1, a2) -> a1.getActivityType().compareToIgnoreCase(a2.getActivityType());
-                    activities.sort(compare);
+                    Comparator<Activity> compareActivities = (a1, a2) -> a1.getActivityType().compareToIgnoreCase(a2.getActivityType());
+                    activities.sort(compareActivities);
                     CSVDataTable(activities);
                     break;
                 case 8:
@@ -367,6 +383,10 @@ public class MainApp {
                     String activityType = kbrd.nextLine();
                     displayActivity(activityType, activities);
                     break;
+                case 15:
+//                    System.out.println("Enter Activity Wanted");
+//                    String keyType = kbrd.nextLine();
+                    displayActivitiesBinary(activities);
             }
 
         }while(choice != 0);
