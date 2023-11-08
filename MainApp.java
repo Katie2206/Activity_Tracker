@@ -281,9 +281,9 @@ public class MainApp {
     public static void CSVDataDisplayed() throws IOException{
         ArrayList<Activity> activities = new ArrayList<>();
         readFromCSV("activity_data_10.csv", activities, true);
-   //    readFromCSV("activity_data_50.csv", activities, true);
-//        readFromCSV("activity_data_100.csv", activities, true);
-//        readFromCSV("activity_data_1000.csv", activities, true);
+        readFromCSV("activity_data_50.csv", activities, true);
+        readFromCSV("activity_data_100.csv", activities, true);
+        readFromCSV("activity_data_1000.csv", activities, true);
 
         Comparator<Activity> activityTypeComparator = new Comparator<Activity>() {
             public int compare(Activity a1, Activity a2) {
@@ -291,6 +291,7 @@ public class MainApp {
             }
         };
         Comparator<Activity> caloriesComparator = new Comparator<Activity>() {
+            @Override
             public int compare(Activity c1, Activity c2) {
                 return (int)((c2.getCalories() - c1.getCalories()));
             }
@@ -314,12 +315,10 @@ public class MainApp {
                     CSVDataTable(activities);
                     break;
                 case 3:
-                    System.out.println("Date (Ascending)");
                     Collections.sort(activities, new DateComparator());
-           CSVDataTable(activities);
+                    CSVDataTable(activities);
                     break;
                 case 4:
-                    System.out.println("Date (Descending)");
                     Collections.sort(activities, new DateComparatorDesc());
                    CSVDataTable(activities);
                     break;
@@ -332,7 +331,9 @@ public class MainApp {
                     CSVDataTable(activities);
                     break;
                 case 7:
-                    Collections.sort(activities, activityTypeComparator);
+//                    Collections.sort(activities, activityTypeComparator);
+                    Comparator<Activity> compare = (a1, a2) -> a1.getActivityType().compareToIgnoreCase(a2.getActivityType());
+                    activities.sort(compare);
                     CSVDataTable(activities);
                     break;
                 case 8:
