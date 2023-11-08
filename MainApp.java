@@ -24,6 +24,7 @@ public class MainApp {
         System.out.println("13. Display Average of Calories per Activity");
         System.out.println("14. Display Subset Of Activity Data By Activity Type");
         System.out.println("15. Display Activity Type With Natural Ordering Using Binary Search");
+//        System.out.println("16. Display Subset Of Activity Data By Type Of Energy Expended");
     }
 
     public static void readFromCSV (String file, ArrayList<Activity> activity, boolean headers) throws IOException {
@@ -72,6 +73,35 @@ public class MainApp {
 
         return KmH;
     }
+
+    //Energy Expended
+//    public static Activity.Intensity searchByEnergyExpended(String energy, ArrayList<Activity> activities){
+//        Scanner kbrd = new Scanner(System.in);
+//        energy = kbrd.nextLine();
+//        for(Activity a : activities){
+//            if (a.getActivityType().equals("Running")){
+//                if (KmH < 4){
+//                    calories = a.getDuration()*4.1;
+//                    a.setIntensity(String.valueOf(Activity.Intensity.VERY_LIGHT));
+//                } else if (KmH >= 4 && KmH < 8 ) {
+//                    calories = a.getDuration()*7.2;
+//                    a.setIntensity(String.valueOf(Activity.Intensity.LIGHT));
+//                }
+//                else if (KmH >= 8 && KmH < 12 ) {
+//                    calories = a.getDuration()*10;
+//                    a.setIntensity(String.valueOf(Activity.Intensity.MODERATE));
+//                }
+//                else if (KmH >= 12 && KmH < 16 ) {
+//                    calories = a.getDuration()*15.4;
+//                    a.setIntensity(String.valueOf(Activity.Intensity.VIGOROUS));
+//                }else if (KmH >= 16 ) {
+//                    calories = a.getDuration()*20.8 ;
+//                    a.setIntensity(String.valueOf(Activity.Intensity.VERY_VIGOROUS));
+//                }
+//            }
+//        }
+//        return null;
+//    }
 
     public static void calculateCalories(ArrayList<Activity> activities){
         double KmH = 0;
@@ -387,6 +417,10 @@ public class MainApp {
 //                    System.out.println("Enter Activity Wanted");
 //                    String keyType = kbrd.nextLine();
                     displayActivitiesBinary(activities);
+//                case 16:
+//                    System.out.println("Enter Type Of Energy Expended");
+//                    String energy = kbrd.nextLine();
+//                    searchByEnergyExpended(energy, activities);
             }
 
         }while(choice != 0);
